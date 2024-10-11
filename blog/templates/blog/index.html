@@ -1,0 +1,51 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <!-- Basic Page Needs -->
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <!-- FONT -->
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static "css/normalize.css" %}">
+    <link rel="stylesheet" href="{% static "css/skeleton.css" %}">
+
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <table class="u-full-width">
+            <thead>
+            <tr>
+                <th scope="col">Имя пользователя</th>
+                <th scope="col">Тема поста</th>
+                <th scope="col">Текст поста</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for post in posts_list %}
+                <tr>
+                    <td>{{ post.userId }}</td>
+                    <td>{{ post.title }}</td>
+                    <td>{{ post.body }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        {% if page.has_previous %}
+            <a class="button button-primary" href="?page={{ page.previous_page_number }}">Назад</a>
+        {% endif %}
+            <a class="button disabled" href="">{{ page.number }}</a>
+        {% if page.has_next %}
+            <a class="button button-primary" href="?page={{ page.next_page_number }}">Вперед</a>
+        {% endif %}
+
+    </div>
+</div>
+</body>
+</html>
